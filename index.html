@@ -332,10 +332,10 @@
           <li><a href="#services">SERVICIOS</a></li>
           <!-- <li><a href="#portfolio">PORTFOLIO</a></li> -->
           <!-- <li><a href="#pricing">PRECIOS</a></li> -->
-          <li><a href="#contactForm">CONTACTO</a></li>
+          <li><a href="#form">CONTACTO</a></li>
           <li><a href="https://d2ymib6pye7gqo.cloudfront.net/">AREA CLIENTE</a></li>
 
-<!-- 
+          <!-- 
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRIVADO
             <span class="caret"></span></a>
@@ -350,7 +350,7 @@
             </ul>
           </li> 
 -->
-          
+
         </ul>
       </div>
     </div>
@@ -362,7 +362,6 @@
 
 
   <!-- https://kgnete.github.io/k08/ -->
-
 
 
 
@@ -387,7 +386,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="figuras/pp.gif" alt="New York" width="1200" height="700">
+          <img src="figuras/pp.gif" alt="New York" width="100%" height="700">
           <div class="carousel-caption">
             <h3>MONITORIZACIÓN </h3>
             <p>Contribución fotovoltaica</p>
@@ -395,7 +394,7 @@
         </div>
 
         <div class="item">
-          <img src="figuras/pp.gif" alt="Chicago" width="1200" height="700">
+          <img src="figuras/pp.gif" alt="Chicago" width="100%" height="700">
           <div class="carousel-caption">
             <h3>Energia</h3>
             <p>Supervisión de contadores (consumo y producción)</p>
@@ -403,7 +402,7 @@
         </div>
 
         <div class="item">
-          <img src="figuras/pp.gif" alt="Los Angeles" width="1200" height="700">
+          <img src="figuras/pp.gif" alt="Los Angeles" width="100%" height="700">
           <div class="carousel-caption">
             <h3>Alertas</h3>
             <p>Envio de notificacione de alertas</p>
@@ -669,55 +668,58 @@
 
 
   <!-- Container (Contact Section) -->
-  <form id="contactForm" class="container-fluid bg-grey">
+  <form id="form" class="container-fluid bg-grey" method="POST">
 
 
     <div class="col-sm-7">
       <div class="row">
 
-        <label for="validationTooltip01">Estoy interesado en</label>
-        <select class="form-control" name="name" required>
-          <option value="1" selected>servicio gestión energética</option>
-          <option value="2">Optimizacion de Tarifa</option>
-          <option value="3">Consutoria energética</option>
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email">
+
+
+        <label for="name">Servicio</label>
+        <select type="name" class="form-control" id="Servicio" required>
+          <option value="servicio gestión energética" selected>servicio gestión energética</option>
+          <option value="Optimizacion de Tarifa">Optimizacion de Tarifa</option>
+          <option value="Consutoria energética">Consutoria energética</option>
         </select>
 
 
-        <label for="validationTooltip01">soy</label>
-        <select class="form-control" name="content1" required>
-          <option value="1" selected>Instalador</option>
-          <option value="2">Ingenieria</option>
-          <option value="3">Particular</option>
+
+
+
+        <label for="name">soy</label>
+        <select type="name" class="form-control" id="funcion" required>
+          <option value="Instalador" selected>Instalador</option>
+          <option value="Ingenieria">Ingenieria</option>
+          <option value="Particular">Particular</option>
         </select>
 
 
-        <label for="validationTooltip01">mi email</label>
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required>
 
 
-        <label for="validationTooltip01">comentario</label>
-        <textarea class="form-control" id="comments" name="content2" placeholder="comentario" rows="5"></textarea><br>
-      </div>
-
-      <div class="form-group row">
-        <button class="btn btn-default pull-right" id="submit" type="submit">Enviar</button>
-      </div>
-
-      <div id="toast"></div>
+        <label for="name">Comentario</label>
+        <input type="name" class="form-control" id="message2" placeholder="cometario">
 
 
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-      </div>
-    </div>
+        <h4 id="response"></h4>
 
-    <div class="row">
-      <div class="col-sm-5">
-        <p><span class="glyphicon glyphicon-map-marker"></span> C/ Severo Ochoa, 27 - 29590, PTA Málaga </p>
-        <p><span class="glyphicon glyphicon-phone"></span> +34 600 366 211</p>
-        <!-- <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p> -->
-      </div>
-    </div>
+        <label><input type="checkbox" class="agree"> acuerdo con la</label> <a href="./politicaprivacidad.html">Política
+          de Privacidad.</a>
+        <input type="submit" class="btn btn-primary" value="Enviar">
+
+
+
+
+
+        <div class="row">
+          <div class="col-sm-5">
+            <p><span class="glyphicon glyphicon-map-marker"></span> C/ Severo Ochoa, 27 - 29590, PTA Málaga </p>
+            <p><span class="glyphicon glyphicon-phone"></span> +34 600 366 211</p>
+            <!-- <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p> -->
+          </div>
+        </div>
 
   </form>
 
@@ -752,63 +754,53 @@
 
 
 
-
-
-
   <script>
 
-    const form = document.getElementById('contactForm')
-    const url = 'https://utlgmv4pzd.execute-api.eu-west-1.amazonaws.com/dev/email/send'
-    const toast = document.getElementById('toast')
-    const submit = document.getElementById('submit')
 
-    function post(url, body, callback) {
-      var req = new XMLHttpRequest();
-      req.open("POST", url, true);
-      req.setRequestHeader("Content-Type", "application/json");
-      req.addEventListener("load", function () {
-        if (req.status < 400) {
-          callback(null, JSON.parse(req.responseText));
-        } else {
-          callback(new Error("Request failed: " + req.statusText));
+    (() => {
+      // aceptacion pollitica privacidad
+      $('form input[type="submit"]').prop("disabled", true);
+      $(".agree").click(function () {
+        if ($(this).prop("checked") == true) {
+          $('form input[type="submit"]').prop("disabled", false);
+        }
+        else if ($(this).prop("checked") == false) {
+          $('form input[type="submit"]').prop("disabled", true);
         }
       });
-      req.send(JSON.stringify(body));
-    }
 
-    function success() {
-      toast.innerHTML = 'Gracias, le atenderemos lo antes posible'
-      submit.disabled = false
-      submit.blur()
-      form.name.focus()
-      form.name.value = ''
-      form.email.value = ''
-      form.content.value = ''
-    }
 
-    function error(err) {
-      toast.innerHTML = 'Hay algun problem, por favor intentelo mas tarde'
-      submit.disabled = false
-      console.log(err)
-    }
+      // envio formulario
+      const form = document.querySelector('form');
+      const submitResponse = document.querySelector('#response');
+      const formURL = 'https://aatm33sywk.execute-api.eu-west-1.amazonaws.com/Prod/submitForm';
+      form.onsubmit = e => {
+        e.preventDefault();
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault()
-      toast.innerHTML = 'Enviando ...'
-      submit.disabled = true
+        // Capture the form data
+        let data = { "web": "wattbucket" };
+        Array.from(form).map(input => (data[input.id] = input.value));
+        submitResponse.innerHTML = 'Enviando...'
 
-      const payload = {
-        name: form.name.value,
-        email: form.email.value,
-        content1: form.content1.value,
-        content2: form.content2.value
-      }
-      post(url, payload, function (err, res) {
-        if (err) { return error(err) }
-        success()
-      })
-    })
+        // Create the AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, formURL, true);
+        xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
+        // Send the collected data as JSON
+        xhr.send(JSON.stringify(data));
+
+        xhr.onloadend = response => {
+          if (response.target.status === 200) {
+            form.reset();
+            submitResponse.innerHTML = 'Formulario entregado !';
+          } else {
+            submitResponse.innerHTML = 'Error! Por favor intentelo mas tarde.';
+          }
+        };
+      };
+    })();
   </script>
 
 
